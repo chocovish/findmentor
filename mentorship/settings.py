@@ -127,5 +127,9 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'mainapp.User'
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8080',
+    '127.0.0.1:9000'
+)
 
+CORS_ALLOW_CREDENTIALS = True

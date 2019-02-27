@@ -1,8 +1,10 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,HttpResponseRedirect
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.contrib.auth import login
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView,RetrieveAPIView
+from rest_framework.views import APIView
+from rest_framework.response import Response
 import requests
 
 from .utilities import linkedin_api
@@ -26,10 +28,10 @@ def handleloginlogin(request):
     if user:
         user = user[0]
         login(request,user)
-        return HttpResponse("You are logged in: " + request.user.username)
+        return HttpResponseRedirect("http://localhost:8080/")
     else:
         user = User.objects.create(email=profile['email'],first_name=profile['first_name'],last_name=profile['last_name'],l_id=profile['linkedin_id'])
-        return HttpResponse("User Created")
+        return HttpResponseRedirect("http://localhost:8080/")
 
 
 def linkedin(request):
@@ -39,3 +41,12 @@ def linkedin(request):
 class CategoryList(ListAPIView):
     queryset= Category.objects.all()
     serializer_class = CategorySerializer
+
+class GetUser(APIView):
+    def get(self,request):
+        u = request.user
+
+        return Response({'name':str(u),'loggedin':u.is_authenticated})
+
+def home(request):
+    return render(request,'index.html')

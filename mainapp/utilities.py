@@ -9,7 +9,7 @@ def linkedin_api(code):
     res = requests.get(url,params=params).json()
     at = res['access_token']
     headers = {'Authorization': 'Bearer {}'.format(at)}
-    res = requests.get("https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,headLine,emailAddress)",headers=headers).json()
+    res = requests.get("https://api.linkedin.com/v2/me?projection=(id,firstName,lastName)",headers=headers).json()
     print(res)
     first_name = res['firstName']['localized']['en_US']
     last_name = res['lastName']['localized']['en_US']

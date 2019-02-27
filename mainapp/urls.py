@@ -11,4 +11,6 @@ urlpatterns = [
     path('login/linkedin/callback/',views.handleloginlogin),
     path('linkedin/',views.linkedin),
     path('categorylist/',views.CategoryList.as_view()),
+    path('getuser/',views.GetUser.as_view()),
+    path('',views.home),
 ]
