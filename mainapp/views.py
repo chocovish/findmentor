@@ -12,7 +12,6 @@ from .models import Category
 from .serializers import CategorySerializer,UserSerializer
 
 
-
 from .serializers import UserSerializer
 # Create your views here.
 
@@ -63,7 +62,7 @@ class GetUser(APIView):
         if u.is_authenticated:
             u = UserSerializer(u).data
             return Response(u)
-        return Response(status=401)
+        return Response({'msg':"You are not logged in"})
 
 def home(request):
     return render(request,'index.html')
