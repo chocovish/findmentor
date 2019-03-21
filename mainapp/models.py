@@ -9,7 +9,7 @@ class Category(models.Model):
 
 class User(AbstractUser):
     usertype = models.CharField(max_length=1,choices=(('M','Mentor'),('S','Start Up')),blank=True,null=True)
-    user_cat = models.ManyToManyField(Category,blank=True,null=True)
+    user_cat = models.ManyToManyField(Category)
     headline = models.CharField(max_length=200,null=True,blank=True)
     l_id = models.CharField(max_length=10)
     dp = models.URLField(null=True,blank=True)

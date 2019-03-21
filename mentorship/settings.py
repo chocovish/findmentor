@@ -133,6 +133,7 @@ CORS_ORIGIN_WHITELIST = (
 
 CORS_ALLOW_CREDENTIALS = True
 
+SECURE_SSL_REDIRECT = False
 
 import django_heroku 
 django_heroku.settings(locals())
