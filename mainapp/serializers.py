@@ -5,7 +5,7 @@ from .models import Category
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','usertype','user_cat','first_name','last_name','headline','l_id','dp']
+        fields = ['id','usertype','email','user_cat','first_name','last_name','headline','l_id','dp']
 
 
 class CategorySerializer(serializers.ModelSerializer):

@@ -12,7 +12,7 @@ class User(AbstractUser):
     user_cat = models.ManyToManyField(Category,blank=True,null=True)
     headline = models.CharField(max_length=200,null=True,blank=True)
     l_id = models.CharField(max_length=10)
-    dp = models.ImageField(blank=True,null=True)
+    dp = models.URLField(null=True,blank=True)
     
 
 

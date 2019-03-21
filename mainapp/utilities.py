@@ -7,13 +7,15 @@ def linkedin_api(code):
     redirect_uri = "http://localhost:8000/login/linkedin/callback"
     params = {'code':code,'client_secret':secret,'client_id':id,'redirect_uri':redirect_uri,'grant_type':'authorization_code'}
     res = requests.get(url,params=params).json()
+    print(res)
     at = res['access_token']
     headers = {'Authorization': 'Bearer {}'.format(at)}
-    res = requests.get("https://api.linkedin.com/v2/me?projection=(id,firstName,lastName)",headers=headers).json()
+    res = requests.get("https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,emailAddress,public-profile-url,profilePicture(displayImage~:playableStreams))",headers=headers).json()
     print(res)
     first_name = res['firstName']['localized']['en_US']
     last_name = res['lastName']['localized']['en_US']
     linkedin_id = res['id']
+    dp = res['profilePicture']['displayImage~']['elements'][0]['identifiers'][0]['identifier']
     res2 = requests.get("https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))",headers=headers).json()
     email = res2['elements'][0]['handle~']['emailAddress']
     print("Email Address: ",email)
@@ -26,4 +28,5 @@ def linkedin_api(code):
     ret['first_name'] = first_name
     ret['last_name'] = last_name
     ret['linkedin_id'] = linkedin_id
+    ret['dp'] = dp
     return ret
