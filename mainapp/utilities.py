@@ -4,7 +4,7 @@ def linkedin_api(code):
     url = "https://www.linkedin.com/oauth/v2/accessToken"
     id = "81w9qew3mn68ih"
     secret = "op5jx5uuYCNOHsns"
-    redirect_uri = "https://http://guestadvisor.herokuapp.com/login/linkedin/callback"
+    redirect_uri = "http://guestadvisor.herokuapp.com/login/linkedin/callback"
     params = {'code':code,'client_secret':secret,'client_id':id,'redirect_uri':redirect_uri,'grant_type':'authorization_code'}
     res = requests.get(url,params=params).json()
     print(res)
