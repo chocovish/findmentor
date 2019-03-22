@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 import requests
 
+frontend = '//findmen.netlify.com'
+
 from .utilities import linkedin_api
 from .models import Category
 from .serializers import CategorySerializer,UserSerializer
@@ -34,11 +36,11 @@ def handleloginlogin(request):
         user.dp = profile['dp']
         user.save()
         login(request,user)
-        return HttpResponseRedirect("http://localhost:8080/")
+        return HttpResponseRedirect(frontend)
     else:
         user = User.objects.create(email=profile['email'],first_name=profile['first_name'],last_name=profile['last_name'],l_id=profile['linkedin_id'],dp=profile['dp'])
         login(request,user)
-        return HttpResponseRedirect("http://localhost:8080/")
+        return HttpResponseRedirect(frontend)
 
 class Logout(APIView):
     def get(self, request, format=None):

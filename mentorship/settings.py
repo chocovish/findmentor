@@ -129,6 +129,7 @@ AUTH_USER_MODEL = 'mainapp.User'
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
+    'findmen.netlify.com',
 )
 
 CORS_ALLOW_CREDENTIALS = True
