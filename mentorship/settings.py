@@ -137,7 +137,7 @@ CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SAMESITE = None
 CRSF_COOKIE_SAMESITE = None
 
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 
 import django_heroku 
 django_heroku.settings(locals())
